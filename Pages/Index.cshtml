@@ -1,0 +1,36 @@
+﻿@page
+@model JPAsuncionAct1.Pages.IndexModel
+@{
+    ViewData["Title"] = "TV Shows";
+}
+
+<h1>TV Shows</h1>
+
+@if (Model.Shows != null && Model.Shows.Count > 0)
+{
+    <ul>
+        @foreach (var showResponse in Model.Shows)
+        {
+            var show = showResponse.Show;
+            <li>
+                <div style="display: flex; align-items: center;">
+                    <div>
+                        <img src="@show.Image.Medium" alt="@show.Name" style="width: 50px; height: 75px;" />
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <strong>@show.Name</strong> <br />
+                        Language: @show.Language <br />
+                        Genres: @string.Join(", ", show.Genres) <br />
+                        Premiered: @show.Premiered <br />
+                        Status: @show.Status <br />
+                        <a href="@show.Url" target="_blank">More Info</a>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No TV shows available.</p>
+}
